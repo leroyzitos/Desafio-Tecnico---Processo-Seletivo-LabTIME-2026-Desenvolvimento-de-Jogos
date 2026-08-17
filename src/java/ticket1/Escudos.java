@@ -1,13 +1,14 @@
+package java.ticket1;
 
 /**
  * Classe representando o sistema de escudos da nave
  *
- * <p>Implementa a interface {@link Observer}.</p>
+ * <p>Implementa a interface {@link ObserverNucleo}.</p>
  *
  * <p>É responsável por guardar o estado do foco dos
  * escudos e alterá-los conforme as notificações de {@link Nucleo}.</p>
  * */
-public class Escudos implements Observer {
+public class Escudos implements ObserverNucleo {
 
     /** Foco atual dos escudos da nave. */
     private String focoAtual;

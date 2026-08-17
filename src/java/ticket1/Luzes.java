@@ -1,4 +1,6 @@
-public class Luzes implements Observer{
+package java.ticket1;
+
+public class Luzes implements ObserverNucleo{
 
     private String estado;
 

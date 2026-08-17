@@ -1,4 +1,6 @@
-public class Paineis implements Observer{
+package java.ticket1;
+
+public class Paineis implements ObserverNucleo{
 
     private String exibicao;
 
@@ -16,8 +18,4 @@ public class Paineis implements Observer{
         }
 
     }
-}
-
-
-
 }

@@ -1,4 +1,10 @@
-//import java.util.ArrayList
+package java.nave;
+
+import java.ticket1.*;
+import java.ticket2.*;
+import java.ticket3.*;
+
+import java.util.ArrayList;
 
 /**
  * Classe representando a nave e seus principais sistemas relacionados.
@@ -19,7 +25,9 @@ public class Nave {
 
     /** Sistema de iluminação das salas da nave. */
     private Luzes luzes;
-    //ArrayList<Tripulante> tripulacao;
+
+    ArrayList<Tripulante> tripulacao;
+
     //Armamento armamento;
 
     /**
@@ -38,5 +46,11 @@ public class Nave {
         nucleo.registrarObservador(escudos);
         nucleo.registrarObservador(paineis);
         nucleo.registrarObservador(luzes);
+
+        tripulacao = new ArrayList<>();
     }
+
+    public void registrarTripulante(Tripulante tripulante) { tripulacao.add(tripulante); }
+
+    public void removerTripulante(Tripulante tripulante) { tripulacao.remove(tripulante); }
 }

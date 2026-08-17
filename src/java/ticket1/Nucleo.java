@@ -1,12 +1,14 @@
+package java.ticket1;
+
 import java.util.ArrayList;
 
-public class Nucleo implements Subject{
+public class Nucleo implements SubjectNucleo{
 
     private static final int NIVEL_MAXIMO = 100;
     private static final int NIVEL_CRITICO = 25;
 
     private int energia;
-    private ArrayList<Observer> observadores;
+    private ArrayList<ObserverNucleo> observadores;
 
     public Nucleo(){
         energia = NIVEL_MAXIMO;
@@ -14,18 +16,14 @@ public class Nucleo implements Subject{
     }
 
     @Override
-    public void registrarObservador(Observer observador) {
-        observadores.add(observador);
-    }
+    public void registrarObservador(ObserverNucleo observador) { observadores.add(observador); }
 
     @Override
-    public void removerObservador(Observer observador) {
-        observadores.remove(observador);
-    }
+    public void removerObservador(ObserverNucleo observador) { observadores.remove(observador); }
 
     @Override
     public void notificarObservadores(boolean estadoCritico) {
-        for (Observer observador : observadores) {
+        for (ObserverNucleo observador : observadores) {
             observador.atualizar(estadoCritico);
         }
     }
