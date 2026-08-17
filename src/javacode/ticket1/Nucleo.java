@@ -1,4 +1,4 @@
-package java.ticket1;
+package javacode.ticket1;
 
 import java.util.ArrayList;
 
@@ -8,10 +8,12 @@ public class Nucleo implements SubjectNucleo{
     private static final int NIVEL_CRITICO = 25;
 
     private int energia;
+    private String estado;
     private ArrayList<ObserverNucleo> observadores;
 
     public Nucleo(){
         energia = NIVEL_MAXIMO;
+        estado = "Funcionamento normal.";
         observadores = new ArrayList<>();
     }
 
@@ -45,6 +47,7 @@ public class Nucleo implements SubjectNucleo{
 
         if (!estadoAnteriorCritico && energia <= NIVEL_CRITICO) {
             notificarObservadores(true);
+            estado = "NÚCLEO EM ESTADO CRÍTICO. SISTEMAS DE EMERGÊNCIA ACIONADOS.";
         }
     }
 
@@ -66,6 +69,16 @@ public class Nucleo implements SubjectNucleo{
 
         if (estadoAnteriorCritico && energia > NIVEL_CRITICO) {
             notificarObservadores(false);
+            estado = "Funcionamento normal.";
         }
+    }
+
+    public int getEnergia() {
+        return energia;
+    }
+
+    @Override
+    public String toString() {
+        return "Energia: " + energia + " | Estado atual: " + estado;
     }
 }

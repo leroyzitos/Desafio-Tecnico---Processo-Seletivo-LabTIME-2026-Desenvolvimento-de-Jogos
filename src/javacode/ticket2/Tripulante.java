@@ -1,4 +1,4 @@
-package java.ticket2;
+package javacode.ticket2;
 
 public class Tripulante {
 
@@ -27,5 +27,34 @@ public class Tripulante {
 
     public void trabalhar() {
         funcao.trabalhar();
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public char getSexo() {
+        return sexo;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public String getNomeFuncao() {
+        return funcao.getNomeFuncao();
+    }
+
+    @Override
+    public String toString() {
+        return "Tripulante Nº " + codigo
+                + "\nNome: " + nome
+                + "\nSexo: " + sexo
+                + "\nIdade: " + idade + " anos"
+                + "\nFunção: " + funcao.getNomeFuncao();
     }
 }

@@ -1,4 +1,4 @@
-package java.ticket1;
+package javacode.ticket1;
 
 /**
  * Interface para as classes observadoras do padrão de projeto Observer.

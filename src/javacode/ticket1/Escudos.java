@@ -1,4 +1,4 @@
-package java.ticket1;
+package javacode.ticket1;
 
 /**
  * Classe representando o sistema de escudos da nave
@@ -16,17 +16,26 @@ public class Escudos implements ObserverNucleo {
     /**
      * Construtor de {@code Escudos}, que cria o sistema de escudos e inicializa seu foco como o padrão */
     public Escudos() {
-        focoAtual = "Nenhum";
+        focoAtual = "Nenhum.";
     }
 
     @Override
     public void atualizar(boolean estadoCritico) {
 
         if (estadoCritico) {
-            focoAtual = "Nucleo";
+            focoAtual = "Núcleo.";
         } else {
-            focoAtual = "Nenhum";
+            focoAtual = "Nenhum.";
         }
 
+    }
+
+    public String getFocoAtual() {
+        return focoAtual;
+    }
+
+    @Override
+    public String toString() {
+        return "Foco atual: " + focoAtual;
     }
 }

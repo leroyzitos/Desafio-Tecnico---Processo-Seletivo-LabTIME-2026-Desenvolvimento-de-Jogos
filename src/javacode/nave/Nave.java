@@ -1,8 +1,14 @@
-package java.nave;
+package javacode.nave;
 
-import java.ticket1.*;
-import java.ticket2.*;
-import java.ticket3.*;
+import javacode.ticket1.Escudos;
+import javacode.ticket1.Luzes;
+import javacode.ticket1.Nucleo;
+import javacode.ticket1.Paineis;
+import javacode.ticket2.Tripulante;
+
+import javacode.ticket1.*;
+import javacode.ticket2.*;
+//import java.ticket3.*;
 
 import java.util.ArrayList;
 
@@ -13,6 +19,8 @@ import java.util.ArrayList;
  * que fazem parte do sistema da nave.</p>
  * */
 public class Nave {
+
+    private String nome;
 
     /** Núcleo de energia da nave, central para seu funcionamento. */
     private Nucleo nucleo;
@@ -37,7 +45,9 @@ public class Nave {
      * os sistemas de escudos, painéis e iluminação da nave são registrados como
      * observadores do núcleo de energia dela.</p>
      * */
-    public Nave() {
+    public Nave(String nome) {
+        this.nome = nome;
+
         nucleo = new Nucleo();
         escudos = new Escudos();
         paineis = new Paineis();
@@ -53,4 +63,29 @@ public class Nave {
     public void registrarTripulante(Tripulante tripulante) { tripulacao.add(tripulante); }
 
     public void removerTripulante(Tripulante tripulante) { tripulacao.remove(tripulante); }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    @Override
+    public String toString() {
+        String resultado = "=== NAVE " + nome.toUpperCase() + " ==="
+                + "\nNúcleo: " + nucleo
+                + "\nEscudos: " + escudos
+                + "\nPainéis: " + paineis
+                + "\nLuzes: " + luzes;
+
+        resultado += "\n\nTripulação:\n";
+
+        for (Tripulante tripulante : tripulacao){
+            resultado += tripulante + "\n\n";
+        }
+
+        return resultado;
+    }
 }

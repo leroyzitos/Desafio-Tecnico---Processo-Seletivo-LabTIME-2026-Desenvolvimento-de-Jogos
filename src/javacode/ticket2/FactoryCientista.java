@@ -1,4 +1,4 @@
-package java.ticket2;
+package javacode.ticket2;
 
 public class FactoryCientista extends FactoryStateFuncao{
 
