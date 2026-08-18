@@ -1,14 +1,8 @@
 package javacode.nave;
 
-import javacode.ticket1.Escudos;
-import javacode.ticket1.Luzes;
-import javacode.ticket1.Nucleo;
-import javacode.ticket1.Paineis;
-import javacode.ticket2.Tripulante;
-
 import javacode.ticket1.*;
 import javacode.ticket2.*;
-//import java.ticket3.*;
+import javacode.ticket3.*;
 
 import java.util.ArrayList;
 
@@ -20,7 +14,7 @@ import java.util.ArrayList;
  * */
 public class Nave {
 
-    private String nome;
+    private final String nome;
 
     /** Núcleo de energia da nave, central para seu funcionamento. */
     private Nucleo nucleo;
@@ -34,9 +28,9 @@ public class Nave {
     /** Sistema de iluminação das salas da nave. */
     private Luzes luzes;
 
-    ArrayList<Tripulante> tripulacao;
+    private ArrayList<Tripulante> tripulacao;
 
-    //Armamento armamento;
+    private Armamento armas;
 
     /**
      * Construtor de {@code Nave}, que cria uma nova nave e inicializa seus sistemas
@@ -58,34 +52,130 @@ public class Nave {
         nucleo.registrarObservador(luzes);
 
         tripulacao = new ArrayList<>();
-    }
 
-    public void registrarTripulante(Tripulante tripulante) { tripulacao.add(tripulante); }
-
-    public void removerTripulante(Tripulante tripulante) { tripulacao.remove(tripulante); }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+        armas = new Armamento();
     }
 
     public String getNome() {
         return nome;
     }
 
-    @Override
-    public String toString() {
-        String resultado = "=== NAVE " + nome.toUpperCase() + " ==="
-                + "\nNúcleo: " + nucleo
-                + "\nEscudos: " + escudos
-                + "\nPainéis: " + paineis
-                + "\nLuzes: " + luzes;
+    public String statusNucleo() {
+        return nucleo.toString();
+    }
 
-        resultado += "\n\nTripulação:\n";
+    public String statusEscudos() {
+        return escudos.toString();
+    }
+
+    public String statusPaineis() {
+        return paineis.toString();
+    }
+
+    public String statusLuzes() {
+        return luzes.toString();
+    }
+
+    public String statusTripulacao() {
+        String resultado = "\n\nTripulação:\n";
 
         for (Tripulante tripulante : tripulacao){
             resultado += tripulante + "\n\n";
         }
 
         return resultado;
+    }
+
+    public String statusArmamento() {
+        return armas.toString();
+    }
+
+    public void reduzirEnergia(int valor) {
+        nucleo.reduzirEnergia(valor);
+    }
+
+    public void aumentarEnergia(int valor) {
+        nucleo.aumentarEnergia(valor);
+    }
+
+    public void registrarTripulante(String nome, char sexo, int idade, int opcaoFuncao) {
+        Tripulante tripulante = new Tripulante(nome, sexo, idade, opcaoFuncao);
+
+        tripulacao.add(tripulante);
+
+        System.out.println("Tripulante adicionado com sucesso.");
+    }
+
+    public void removerTripulante(String codigo) {
+
+        Tripulante tripulanteEncontrado = null;
+
+        for (Tripulante tripulante : tripulacao) {
+            if (tripulante.getCodigo().equals(codigo)) {
+                tripulanteEncontrado = tripulante;
+                break;
+            }
+        }
+
+        if (tripulanteEncontrado != null) {
+            tripulacao.remove(tripulanteEncontrado);
+            System.out.println(
+                    "Tripulante de código " + codigo + " removido com sucesso."
+            );
+            return;
+        }
+
+        System.out.println("Tripulante não encontrado.");
+    }
+
+    public void trocarFuncao(String codigo, int opcao) {
+
+        for (Tripulante tripulante : tripulacao){
+            if (tripulante.getCodigo().equals(codigo)){
+                tripulante.trocarFuncao(opcao);
+                System.out.println("Função do tripulante de código " + codigo + " alterada com sucesso.");
+                return;
+            }
+        }
+
+        System.out.println("Tripulante não encontrado.");
+    }
+
+    public void trabalhar(String codigo) {
+
+        for (Tripulante tripulante : tripulacao){
+            if (tripulante.getCodigo().equals(codigo)){
+                System.out.println("Tripulante de código " + codigo + " trabalhando:");
+                tripulante.trabalhar();
+                return;
+            }
+        }
+
+        System.out.println("Tripulante não encontrado.");
+    }
+
+    public void atirar() {
+        armas.atirar();
+    }
+
+    public void mudarArma(int opcao) {
+        armas.mudarArma(opcao);
+    }
+
+    public void adicionarModificador(int opcao) {
+        armas.adicionarModificador(opcao);
+    }
+
+    @Override
+    public String toString() {
+
+        return "=== NAVE " + nome.toUpperCase() + " ==="
+                + "\nNúcleo: " + nucleo
+                + "\nEscudos: " + escudos
+                + "\nPainéis: " + paineis
+                + "\nLuzes: " + luzes
+                + statusTripulacao()
+                + "\nArmamento:\n"
+                + armas;
     }
 }
