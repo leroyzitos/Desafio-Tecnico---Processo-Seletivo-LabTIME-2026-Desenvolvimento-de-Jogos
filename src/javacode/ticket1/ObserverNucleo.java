@@ -1,17 +1,17 @@
 package javacode.ticket1;
 
 /**
- * Interface para as classes observadoras do padrão de projeto Observer.
+ * Define o contrato das classes observadoras do padrão de projeto Observer.
  *
- * <p>Ela define o comportamento dos observadores diante das notificações
- * da classe sujeito.</p>
- * */
+ * <p>As classes que implementam esta interface devem definir como irão
+ * reagir às notificações recebidas do sujeito.</p>
+ */
 public interface ObserverNucleo {
 
     /**
-     * Método responsável reagir às notificações realizadas pela classe sujeito.
+     * Reage a uma notificação realizada pelo sujeito.
      *
      * @param estadoCritico indica se o sujeito está em estado crítico ou não
-     * */
-    void atualizar (boolean estadoCritico);
+     */
+    void atualizar(boolean estadoCritico);
 }

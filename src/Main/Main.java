@@ -4,10 +4,30 @@ import javacode.nave.Nave;
 
 import java.util.Scanner;
 
+/**
+ * Classe principal da aplicação e ponto de entrada do sistema.
+ *
+ * <p>É responsável pela interação com o usuário por meio do console,
+ * apresentando as telas, menus e comandos utilizados para demonstrar as
+ * funcionalidades implementadas nos três tickets.</p>
+ *
+ * <p>A classe utiliza a {@link Nave} como ponto central de acesso aos sistemas
+ * da aplicação, evitando a necessidade de manipular diretamente os
+ * componentes internos dos tickets.</p>
+ */
 public class Main {
 
+    /** Scanner utilizado para leitura das entradas fornecidas pelo usuário. */
     private static final Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Ponto de entrada da aplicação.
+     *
+     * <p>Exibe a tela inicial, solicita a confirmação para criação de uma
+     * nova nave e, caso confirmado, inicia o menu principal da nave.</p>
+     *
+     * @param args argumentos fornecidos na execução da aplicação
+     */
     public static void main(String[] args) {
 
         exibirTelaInicial();
@@ -26,6 +46,12 @@ public class Main {
 
     // TELA INICIAL
 
+    /**
+     * Exibe a tela inicial de carregamento do sistema.
+     *
+     * <p>A execução é temporariamente pausada para simular a inicialização
+     * do sistema antes da apresentação da tela de boas-vindas.</p>
+     */
     private static void exibirTelaInicial() {
 
         limparTela();
@@ -41,6 +67,13 @@ public class Main {
         }
     }
 
+    /**
+     * Exibe a tela de boas-vindas e solicita ao usuário a decisão de
+     * prosseguir ou encerrar o sistema.
+     *
+     * @return {@code true} caso o usuário escolha criar uma nave;
+     * {@code false} caso escolha desligar o sistema
+     */
     private static boolean confirmarCriacaoNave() {
 
         limparTela();
@@ -75,6 +108,12 @@ public class Main {
 
     // CRIAÇÃO DA NAVE
 
+    /**
+     * Solicita ao usuário o nome da nave e cria uma nova instância de
+     * {@link Nave}.
+     *
+     * @return nova nave criada com o nome informado pelo usuário
+     */
     private static Nave criarNave() {
 
         limparTela();
@@ -99,6 +138,14 @@ public class Main {
 
     // MENU DA NAVE
 
+    /**
+     * Exibe e controla o menu principal da nave.
+     *
+     * <p>A partir deste menu, o usuário pode acessar os sistemas do núcleo,
+     * da tripulação, do armamento e os detalhes gerais da nave.</p>
+     *
+     * @param nave nave atualmente em operação
+     */
     private static void menuNave(Nave nave) {
 
         int opcao;
@@ -152,6 +199,14 @@ public class Main {
 
     // TICKET 1 - NÚCLEO
 
+    /**
+     * Controla o menu de interação com o núcleo e os sistemas relacionados.
+     *
+     * <p>Permite consultar o estado atual dos sistemas e executar os comandos
+     * relacionados à variação de energia da nave.</p>
+     *
+     * @param nave nave cujo núcleo será manipulado
+     */
     private static void menuNucleo(Nave nave) {
 
         String comando;
@@ -216,6 +271,12 @@ public class Main {
         } while (!comando.equals("0"));
     }
 
+    /**
+     * Solicita a quantidade de dano a ser aplicada e reduz a energia
+     * correspondente da nave.
+     *
+     * @param nave nave que receberá o dano
+     */
     private static void tomarDano(Nave nave) {
 
         limparTela();
@@ -240,6 +301,12 @@ public class Main {
         pausar();
     }
 
+    /**
+     * Solicita a quantidade de energia a ser recuperada e aumenta a energia
+     * do núcleo da nave.
+     *
+     * @param nave nave cuja energia será aumentada
+     */
     private static void repararNave(Nave nave) {
 
         limparTela();
@@ -264,6 +331,12 @@ public class Main {
         pausar();
     }
 
+    /**
+     * Solicita a quantidade de energia a ser reduzida e executa a redução
+     * correspondente no núcleo da nave.
+     *
+     * @param nave nave cuja energia será reduzida
+     */
     private static void reduzirEnergia(Nave nave) {
 
         limparTela();
@@ -287,6 +360,12 @@ public class Main {
         pausar();
     }
 
+    /**
+     * Solicita a quantidade de energia a ser adicionada e executa o aumento
+     * correspondente no núcleo da nave.
+     *
+     * @param nave nave cuja energia será aumentada
+     */
     private static void aumentarEnergia(Nave nave) {
 
         limparTela();
@@ -312,6 +391,15 @@ public class Main {
 
     // TICKET 2 - TRIPULAÇÃO
 
+    /**
+     * Controla o menu de gerenciamento da tripulação da nave.
+     *
+     * <p>Permite executar os comandos de registro, alteração de função,
+     * remoção, exibição e execução do comportamento de trabalho dos
+     * tripulantes.</p>
+     *
+     * @param nave nave cuja tripulação será gerenciada
+     */
     private static void menuTripulacao(Nave nave) {
 
         String comando;
@@ -370,6 +458,11 @@ public class Main {
         } while (!comando.equals("0"));
     }
 
+    /**
+     * Solicita os dados de um novo tripulante e registra o objeto na nave.
+     *
+     * @param nave nave à qual o novo tripulante será adicionado
+     */
     private static void registrarTripulante(Nave nave) {
 
         limparTela();
@@ -422,6 +515,12 @@ public class Main {
         pausar();
     }
 
+    /**
+     * Solicita um código de tripulante e uma nova função, encaminhando a
+     * alteração para a nave.
+     *
+     * @param nave nave cuja tripulação será modificada
+     */
     private static void trocarFuncao(Nave nave) {
 
         limparTela();
@@ -455,6 +554,11 @@ public class Main {
         pausar();
     }
 
+    /**
+     * Solicita o código do tripulante que deverá ser removido da nave.
+     *
+     * @param nave nave cuja tripulação será modificada
+     */
     private static void removerTripulante(Nave nave) {
 
         limparTela();
@@ -472,6 +576,11 @@ public class Main {
         pausar();
     }
 
+    /**
+     * Exibe a composição atual da tripulação da nave.
+     *
+     * @param nave nave cuja tripulação será exibida
+     */
     private static void exibirTripulacao(Nave nave) {
 
         limparTela();
@@ -485,6 +594,12 @@ public class Main {
         pausar();
     }
 
+    /**
+     * Solicita o código de um tripulante e ordena que ele execute o
+     * comportamento correspondente à sua função atual.
+     *
+     * @param nave nave que contém o tripulante
+     */
     private static void trabalhar(Nave nave) {
 
         limparTela();
@@ -504,9 +619,17 @@ public class Main {
 
     // TICKET 3 - ARMAMENTO
 
+    /**
+     * Controla o menu de gerenciamento do armamento da nave.
+     *
+     * <p>Permite realizar disparos, trocar a arma-base equipada, adicionar
+     * modificadores e consultar os detalhes atuais do armamento.</p>
+     *
+     * @param nave nave cujo armamento será gerenciado
+     */
     private static void menuArmamento(Nave nave) {
 
-        int opcao;
+        String comando;
 
         do {
             limparTela();
@@ -526,37 +649,42 @@ public class Main {
 
             System.out.print("\nResposta: ");
 
-            opcao = lerInteiro();
+            comando = scanner.nextLine();
 
-            switch (opcao) {
+            switch (comando.trim().toLowerCase()) {
 
-                case 1:
+                case "atirar":
                     atirar(nave);
                     break;
 
-                case 2:
+                case "trocar_armamento":
                     mudarArma(nave);
                     break;
 
-                case 3:
+                case "adicionar_modificador":
                     adicionarModificador(nave);
                     break;
 
-                case 4:
+                case "exibir_detalhes":
                     exibirDetalhesArmamento(nave);
                     break;
 
-                case 0:
+                case "0":
                     break;
 
                 default:
-                    System.out.println("\nOpção inválida.");
+                    System.out.println("\nComando inválido.");
                     pausar();
             }
 
-        } while (opcao != 0);
+        } while (!comando.equals("0"));
     }
 
+    /**
+     * Solicita que o sistema de armamento da nave execute um disparo.
+     *
+     * @param nave nave cujo armamento realizará o disparo
+     */
     private static void atirar(Nave nave) {
 
         limparTela();
@@ -566,6 +694,15 @@ public class Main {
         pausar();
     }
 
+    /**
+     * Solicita ao usuário a escolha de uma nova arma e, após confirmação,
+     * encaminha a alteração para o sistema de armamento da nave.
+     *
+     * <p>A troca da arma-base reinicia a composição de modificadores,
+     * conforme o comportamento definido no sistema de armamento.</p>
+     *
+     * @param nave nave cujo armamento será alterado
+     */
     private static void mudarArma(Nave nave) {
 
         limparTela();
@@ -574,7 +711,9 @@ public class Main {
         System.out.println("             TROCAR ARMAMENTO");
         System.out.println("========================================\n");
 
-        System.out.println("Ao trocar de arma, os modificadores atuais serão removidos.");
+        System.out.println("Arma atualmente equipada: " + nave.getNomeArmamento());
+
+        System.out.println("\nAo trocar de arma, os modificadores atuais serão removidos.");
 
         System.out.println("\nArmas disponíveis:");
         System.out.println("\t1 - Canhões Perfurantes");
@@ -588,17 +727,66 @@ public class Main {
 
         try {
 
+            limparTela();
 
-            nave.mudarArma(opcao);
+            System.out.println("========================================");
+            System.out.println("             TROCAR ARMAMENTO");
+            System.out.println("========================================\n");
 
-            System.out.println("\nArmamento alterado com sucesso.");
+            System.out.println("Arma selecionada: ");
+
+            switch (opcao) {
+                case 1:
+                    System.out.println("\tCanhões Perfurantes");
+                    break;
+
+                case 2:
+                    System.out.println("\tEnxame de Mísseis");
+                    break;
+
+                case 3:
+                    System.out.println("\tLáser Contínuo");
+                    break;
+
+                case 4:
+                    System.out.println("\tRaio Disruptor");
+                    break;
+
+                default:
+                    throw new IllegalArgumentException("Opção de arma inválida.");
+            }
+
+            System.out.println("\nDigite \"equipar_arma\" para confirmar.");
+            System.out.println("Digite \"0\" para sair.");
+            System.out.print("\nResposta: ");
+
+            String comando = scanner.nextLine().trim().toLowerCase();
+
+            if (comando.equals("equipar_arma")) {
+
+                nave.mudarArma(opcao);
+
+                System.out.println("\nArmamento alterado com sucesso.");
+
+            } else if (!comando.equals("0")) {
+
+                System.out.println("\nNenhuma alteração foi realizada.");
+            }
+
         } catch (IllegalArgumentException e) {
+
             System.out.println("\nErro: " + e.getMessage());
         }
 
         pausar();
     }
 
+    /**
+     * Solicita a escolha de um modificador e o adiciona ao armamento
+     * atualmente equipado.
+     *
+     * @param nave nave cujo armamento receberá o modificador
+     */
     private static void adicionarModificador(Nave nave) {
 
         limparTela();
@@ -629,6 +817,11 @@ public class Main {
         pausar();
     }
 
+    /**
+     * Exibe os detalhes do armamento atualmente configurado na nave.
+     *
+     * @param nave nave cujo armamento será exibido
+     */
     private static void exibirDetalhesArmamento(Nave nave) {
 
         limparTela();
@@ -644,6 +837,11 @@ public class Main {
 
     // DETALHES DA NAVE
 
+    /**
+     * Exibe uma representação detalhada da nave e de seus principais sistemas.
+     *
+     * @param nave nave que terá seus detalhes exibidos
+     */
     private static void exibirDetalhesNave(Nave nave) {
 
         limparTela();
@@ -659,6 +857,14 @@ public class Main {
 
     // ENTRADA E UTILITÁRIOS
 
+    /**
+     * Lê um número inteiro fornecido pelo usuário.
+     *
+     * <p>Caso a entrada não seja um número inteiro, uma mensagem de erro é
+     * exibida e o método continua solicitando uma entrada válida.</p>
+     *
+     * @return valor inteiro informado pelo usuário
+     */
     private static int lerInteiro() {
 
         while (!scanner.hasNextInt()) {
@@ -675,12 +881,22 @@ public class Main {
         return valor;
     }
 
+    /**
+     * Aguarda que o usuário pressione ENTER antes de continuar.
+     */
     private static void pausar() {
 
         System.out.println("\nPressione ENTER para continuar...");
         scanner.nextLine();
     }
 
+    /**
+     * Limpa a tela do terminal utilizando um comando compatível com o
+     * sistema operacional em execução.
+     *
+     * <p>No Windows, utiliza o comando {@code cls}. Em outros sistemas,
+     * utiliza sequências de escape ANSI.</p>
+     */
     private static void limparTela() {
 
         try {
@@ -695,6 +911,7 @@ public class Main {
 
                 System.out.print("\033[H\033[2J");
                 System.out.flush();
+
             }
 
         } catch (Exception e) {
@@ -702,6 +919,9 @@ public class Main {
         }
     }
 
+    /**
+     * Exibe a mensagem de encerramento e finaliza a execução do sistema.
+     */
     private static void desligarSistema() {
 
         limparTela();

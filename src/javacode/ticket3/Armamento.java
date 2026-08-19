@@ -1,17 +1,60 @@
 package javacode.ticket3;
 
+/**
+ * Representa o sistema de armamento da nave.
+ *
+ * <p>É responsável por manter a arma atualmente equipada, permitir a troca
+ * da arma-base, adicionar modificadores de forma cumulativa por meio do
+ * padrão de projeto {@link DecoratorModificadores} e executar os disparos.</p>
+ *
+ * <p>O sistema trabalha com a abstração {@link Arma}, permitindo que tanto
+ * armas-base quanto armas envolvidas por modificadores sejam tratadas de
+ * maneira uniforme.</p>
+ */
 public class Armamento {
 
+    /** Arma atualmente equipada no sistema de armamento. */
     private Arma arma;
 
+    /**
+     * Construtor de {@code Armamento}.
+     *
+     * <p>Inicializa o sistema com uma instância de {@link CanhoesPerfurantes}
+     * como arma-base.</p>
+     */
     public Armamento() {
         arma = new CanhoesPerfurantes();
     }
 
+    /**
+     * Retorna a arma atualmente equipada.
+     *
+     * @return arma atualmente equipada
+     */
     public Arma getArma() {
         return arma;
     }
 
+    /**
+     * Retorna o nome da arma atualmente equipada.
+     *
+     * @return nome da arma atualmente equipada
+     */
+    public String getNome() {
+        return arma.getNome();
+    }
+
+    /**
+     * Altera a arma atualmente equipada de acordo com a opção informada.
+     *
+     * <p>A troca da arma-base substitui a configuração atual do armamento,
+     * removendo quaisquer modificadores que estivessem acoplados à arma
+     * anteriormente.</p>
+     *
+     * @param opcao opção correspondente à arma desejada
+     * @throws IllegalArgumentException caso a opção informada não corresponda
+     * a uma arma válida
+     */
     public void mudarArma(int opcao) {
 
         switch (opcao){
@@ -36,6 +79,17 @@ public class Armamento {
         }
     }
 
+    /**
+     * Adiciona um modificador à arma atualmente equipada.
+     *
+     * <p>O novo modificador é aplicado sobre a configuração atual da arma,
+     * permitindo que múltiplos modificadores sejam empilhados de maneira
+     * dinâmica.</p>
+     *
+     * @param opcao opção correspondente ao modificador desejado
+     * @throws IllegalArgumentException caso a opção informada não corresponda
+     * a um modificador válido
+     */
     public void adicionarModificador(int opcao) {
 
         switch (opcao){
@@ -64,6 +118,14 @@ public class Armamento {
         }
     }
 
+    /**
+     * Executa um disparo utilizando a arma atualmente equipada e seus
+     * modificadores acumulados.
+     *
+     * <p>O método obtém os valores atuais de dano imediato, dano por segundo
+     * e alcance por meio da abstração {@link Arma}, calcula os valores totais
+     * correspondentes e apresenta o resultado do disparo no terminal.</p>
+     */
     public void atirar() {
 
         int danoEscudos = arma.getDanoEscudos();
@@ -110,6 +172,16 @@ public class Armamento {
         System.out.println("\n========================================\n");
     }
 
+    /**
+     * Retorna uma representação textual do estado atual do sistema de
+     * armamento.
+     *
+     * <p>A representação apresenta a arma equipada, os valores atuais de
+     * dano imediato, dano por segundo e o alcance, considerando também os
+     * modificadores atualmente aplicados.</p>
+     *
+     * @return representação textual do estado atual do armamento
+     */
     @Override
     public String toString() {
 

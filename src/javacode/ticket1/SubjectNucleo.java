@@ -1,31 +1,32 @@
 package javacode.ticket1;
 
 /**
- * Interface para a classe sujeito do padrão de projeto Observer.
+ * Define o contrato do sujeito do padrão de projeto Observer.
  *
- * <p>Ela define os métodos do sujeito para adição e remoção de
- * observadores e também notificação destes de mudanças relantes no sujeito.</p>
- * */
+ * <p>É responsável por estabelecer as operações necessárias para registrar
+ * e remover observadores, bem como notificá-los sobre mudanças relevantes
+ * no estado do sujeito.</p>
+ */
 public interface SubjectNucleo {
 
     /**
-     * Método responsável por registrar um observador na lista de observadores do sujeito.
+     * Registra um observador na lista de observadores do sujeito.
      *
      * @param observador objeto observador a ser registrado
-     * */
+     */
     void registrarObservador(ObserverNucleo observador);
 
     /**
-     * Método responsável por remover um observador da lista de observadores do sujeito.
+     * Remove um observador da lista de observadores do sujeito.
      *
      * @param observador objeto observador a ser removido
-     * */
+     */
     void removerObservador(ObserverNucleo observador);
 
     /**
-     * Método responsável por notificar os observadores de mudanças no sujeito quando necessário.
+     * Notifica os observadores sobre uma mudança no estado crítico do sujeito.
      *
      * @param estadoCritico indica se o sujeito está em estado crítico ou não
-     * */
+     */
     void notificarObservadores(boolean estadoCritico);
 }
