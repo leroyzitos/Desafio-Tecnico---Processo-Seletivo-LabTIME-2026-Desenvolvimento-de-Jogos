@@ -60,6 +60,10 @@ public class Nave {
         return nome;
     }
 
+    public String getNomeArmamento() {
+        return armas.getNome();
+    }
+
     public String statusNucleo() {
         return nucleo.toString();
     }

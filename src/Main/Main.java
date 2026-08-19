@@ -506,7 +506,7 @@ public class Main {
 
     private static void menuArmamento(Nave nave) {
 
-        int opcao;
+        String comando;
 
         do {
             limparTela();
@@ -526,35 +526,35 @@ public class Main {
 
             System.out.print("\nResposta: ");
 
-            opcao = lerInteiro();
+            comando = scanner.nextLine();
 
-            switch (opcao) {
+            switch (comando.trim().toLowerCase()) {
 
-                case 1:
+                case "atirar":
                     atirar(nave);
                     break;
 
-                case 2:
+                case "trocar_armamento":
                     mudarArma(nave);
                     break;
 
-                case 3:
+                case "adicionar_modificador":
                     adicionarModificador(nave);
                     break;
 
-                case 4:
+                case "exibir_detalhes":
                     exibirDetalhesArmamento(nave);
                     break;
 
-                case 0:
+                case "0":
                     break;
 
                 default:
-                    System.out.println("\nOpção inválida.");
+                    System.out.println("\nComando inválido.");
                     pausar();
             }
 
-        } while (opcao != 0);
+        } while (!comando.equals("0"));
     }
 
     private static void atirar(Nave nave) {
@@ -574,7 +574,9 @@ public class Main {
         System.out.println("             TROCAR ARMAMENTO");
         System.out.println("========================================\n");
 
-        System.out.println("Ao trocar de arma, os modificadores atuais serão removidos.");
+        System.out.println("Arma atualmente equipada: " + nave.getNomeArmamento());
+
+        System.out.println("\nAo trocar de arma, os modificadores atuais serão removidos.");
 
         System.out.println("\nArmas disponíveis:");
         System.out.println("\t1 - Canhões Perfurantes");
@@ -588,11 +590,54 @@ public class Main {
 
         try {
 
+            limparTela();
 
-            nave.mudarArma(opcao);
+            System.out.println("========================================");
+            System.out.println("             TROCAR ARMAMENTO");
+            System.out.println("========================================\n");
 
-            System.out.println("\nArmamento alterado com sucesso.");
+            System.out.println("Arma selecionada: ");
+
+            switch (opcao) {
+                case 1:
+                    System.out.println("\tCanhões Perfurantes");
+                    break;
+
+                case 2:
+                    System.out.println("\tEnxame de Mísseis");
+                    break;
+
+                case 3:
+                    System.out.println("\tLáser Contínuo");
+                    break;
+
+                case 4:
+                    System.out.println("\tRaio Disruptor");
+                    break;
+
+                default:
+                    throw new IllegalArgumentException("Opção de arma inválida.");
+            }
+
+            System.out.println("\nDigite \"equipar_arma\" para confirmar.");
+            System.out.println("Digite \"0\" para sair.");
+            System.out.print("\nResposta: ");
+
+            String comando = scanner.nextLine().trim().toLowerCase();
+
+            if (comando.equals("equipar_arma")) {
+
+                nave.mudarArma(opcao);
+
+                System.out.println("\nArmamento alterado com sucesso.");
+
+            } else if (!comando.equals("0")) {
+
+                System.out.println("\nNenhuma alteração foi realizada.");
+            }
+
         } catch (IllegalArgumentException e) {
+
             System.out.println("\nErro: " + e.getMessage());
         }
 

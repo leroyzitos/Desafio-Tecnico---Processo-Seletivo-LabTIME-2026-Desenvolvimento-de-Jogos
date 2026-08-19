@@ -12,6 +12,10 @@ public class Armamento {
         return arma;
     }
 
+    public String getNome() {
+        return arma.getNome();
+    }
+
     public void mudarArma(int opcao) {
 
         switch (opcao){
