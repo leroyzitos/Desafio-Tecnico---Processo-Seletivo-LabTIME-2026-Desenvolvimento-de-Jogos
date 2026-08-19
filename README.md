@@ -84,7 +84,7 @@ git clone <https://github.com/leroyzitos/Desafio-Tecnico---Processo-Seletivo-Lab
 Em seguida, entre na pasta do projeto:
 
 ```bash
-cd <"Processo Seletivo Labtime">
+cd <"Desafio-Tecnico---Processo-Seletivo-LabTIME-2026-Desenvolvimento-de-Jogos">
 ```
 
 ### Executando o projeto
